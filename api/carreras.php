@@ -8,7 +8,7 @@ try {
     switch ($metodo) {
         // =================leer===============================================
         case 'GET':
-            // Ahora seleccionamos todo (*) para llenar la tabla
+            //seleccionamos todo (*)
             $stmt = $pdo->prepare("SELECT * FROM degree_program ORDER BY degree_name ASC");
             $stmt->execute();
             $carreras = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -65,7 +65,6 @@ try {
     }
 
 } catch (\PDOException $e) {
-    // Si la carrera tiene estudiantes se lanzará este error
     echo json_encode(['status' => 'error', 'mensaje' => $e->getMessage()]);
 }
 ?>

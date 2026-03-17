@@ -23,7 +23,7 @@ try {
         case 'POST':
             $input = json_decode(file_get_contents('php://input'), true);
             
-            // TRUCO PRO: Si el usuario no selecciona carrera, mandamos NULL a la BD
+            // Si el usuario no selecciona carrera, mandamos NULL a la BD
             $degree_id = !empty($input['degree_id']) ? $input['degree_id'] : null;
 
             //insertar variables
