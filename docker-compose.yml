@@ -1,0 +1,31 @@
+version: '3.8'
+
+services:
+  web:
+    build: .
+    ports:
+      - "80:80"
+    volumes:
+      - ./:/var/www/html/
+    depends_on:
+      - db
+
+  db:
+    image: mysql:8.0
+    ports:
+      - "3306:3306"
+    environment:
+      # La contraseña de root
+      MYSQL_ROOT_PASSWORD: root_secreto 
+      # Tu base de datos
+      MYSQL_DATABASE: udenar_db
+      # EL USUARIO NORMAL
+      MYSQL_USER: alci
+      MYSQL_PASSWORD: 12345
+    volumes:
+      - db_data:/var/lib/mysql
+      #Copia tu archivo .sql a la carpeta de auto-arranque al crear la base de Docker
+      - ./database:/docker-entrypoint-initdb.d 
+
+volumes:
+  db_data:
